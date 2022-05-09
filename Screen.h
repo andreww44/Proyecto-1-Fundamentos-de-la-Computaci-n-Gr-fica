@@ -2,15 +2,15 @@
 #define SCREEN_H_
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include "Rectangle.h"
 #include <iostream>
 #include <cmath>
 
 
 class Screen
 {
-    
+        Rectangle figura;
     public:
-
         const int SCR_WIDTH = 800;
         const int SCR_HEIGHT = 600;
         const char *vertexShaderSource ="#version 330 core\n"
@@ -28,16 +28,15 @@ class Screen
             "   FragColor = ourColor;\n"
             "}\n\0";
         unsigned int shaderProgram;
+        unsigned int VAO, VBO;
         GLFWwindow* window;
         Screen();
         void InitializeScreen();
+        void FinishScreen();
         static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
         static void glfw_onKey(GLFWwindow* window, int key, int scancode, int action, int mode);
-        //static void colorTriangle();
         static void eventosTeclado(GLFWwindow* window, int key, int scancode, int action, int mode);
-        //void InitializeGl();
-        //void InitializeWindows();
-
+        void Loop();
         virtual ~Screen();
 
         

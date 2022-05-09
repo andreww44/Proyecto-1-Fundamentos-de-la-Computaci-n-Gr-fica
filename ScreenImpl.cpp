@@ -8,7 +8,7 @@ Screen::~Screen(){
  
 Screen::Screen()
 {
-    
+    figura = Rectangle();
     
 }
 
@@ -78,13 +78,22 @@ void Screen::InitializeScreen()
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
+    /*
     float vertices[] = {
          0.5f, -0.5f, 0.0f,  // bottom right
         -0.5f, -0.5f, 0.0f,  // bottom left
          0.0f,  0.5f, 0.0f   // top 
+    };*/
+    float vertices[] = {
+        figura.getVertex(0).getPos()[0], figura.getVertex(0).getPos()[1], figura.getVertex(0).getPos()[2],  // bottom right
+        figura.getVertex(1).getPos()[0], figura.getVertex(1).getPos()[1], figura.getVertex(1).getPos()[2],  // bottom left
+        figura.getVertex(2).getPos()[0], figura.getVertex(2).getPos()[1], figura.getVertex(2).getPos()[2],  // top right
+        figura.getVertex(1).getPos()[0], figura.getVertex(1).getPos()[1], figura.getVertex(1).getPos()[2],  // bottom right
+        figura.getVertex(3).getPos()[0], figura.getVertex(3).getPos()[1], figura.getVertex(3).getPos()[2],  // bottom left
+        figura.getVertex(2).getPos()[0], figura.getVertex(2).getPos()[1], figura.getVertex(2).getPos()[2]
     };
 
-    unsigned int VBO, VAO;
+    //unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
@@ -103,8 +112,12 @@ void Screen::InitializeScreen()
 
     // bind the VAO (it was already bound, but just to demonstrate): seeing as we only have a single VAO we can 
     // just bind it beforehand before rendering the respective triangle; this is another approach.
-    glBindVertexArray(VAO);
+    
 
+}
+
+void Screen::Loop()
+{
     while (!glfwWindowShouldClose(window))
     {
         // input
@@ -122,18 +135,23 @@ void Screen::InitializeScreen()
         // update shader uniform
         
         double  timeValue = glfwGetTime();
-        float greenValue = static_cast<float>(sin(timeValue) / 2.0 + 0.5);
+        //float greenValue = static_cast<float>(sin(timeValue) / 2.0 + 0.5);
         int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-        glUniform4f(vertexColorLocation, 0.0f, greenValue, 0.0f, 1.0f);
+        glUniform4f(vertexColorLocation, figura.getVertex(0).getColor()[0], figura.getVertex(0).getColor()[1], figura.getVertex(0).getColor()[2], figura.getVertex(0).getColor()[3]);
         
         // render the triangle
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
 
         // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
         // -------------------------------------------------------------------------------
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+}
+
+void Screen::FinishScreen()
+{
+    glBindVertexArray(VAO);
 
     // optional: de-allocate all resources once they've outlived their purpose:
     // ------------------------------------------------------------------------

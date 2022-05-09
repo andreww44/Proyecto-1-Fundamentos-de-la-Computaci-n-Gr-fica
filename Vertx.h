@@ -14,5 +14,7 @@ class Vertex
         virtual ~Vertex();
         std::array<float,4> getPos() const;
         std::array<float,4> getColor() const;
+        void setPos(const std::array<float,4> _xyzw);
+        void setCol(const std::array<float,4> _rgba);
 };
 #endif 

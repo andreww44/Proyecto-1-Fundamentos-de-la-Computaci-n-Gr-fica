@@ -23,3 +23,11 @@ std::array<float,4>
 Vertex::getColor() const{
 	return RGBA;
 }
+
+void Vertex::setPos(const std::array<float,4> _xyzw){
+	std::copy(std::begin(_xyzw), std::end(_xyzw),std::begin(XYZW));
+}
+
+void Vertex::setCol(const std::array<float,4> _rgba){
+	std::copy(std::begin(_rgba), std::end(_rgba),std::begin(RGBA));
+}
