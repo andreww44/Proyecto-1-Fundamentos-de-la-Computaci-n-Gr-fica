@@ -181,9 +181,9 @@ void Screen::glfw_onKey(GLFWwindow* window, int key, int scancode, int action, i
     {
         glfwSetWindowShouldClose(window, GL_TRUE);
     }
-    if (key == GLFW_KEY_0 && action == GLFW_RELEASE)
+    if (key == GLFW_KEY_1 && action == GLFW_RELEASE)
     {
-
+        figura.plusRed();
     }
         //colorTriangle();
 }
