@@ -9,6 +9,7 @@ Screen::~Screen(){
 Screen::Screen()
 {
     figura = Rectangle();
+    controllador = KeyController();
     
 }
 
@@ -183,7 +184,7 @@ void Screen::glfw_onKey(GLFWwindow* window, int key, int scancode, int action, i
     }
     if (key == GLFW_KEY_1 && action == GLFW_RELEASE)
     {
-        figura.plusRed();
+        //figura.plusRed();
     }
         //colorTriangle();
 }
@@ -199,7 +200,14 @@ void Screen::colorTriangle(){
 void Screen::eventosTeclado(GLFWwindow* window, int key, int scancode, int action, int mode)
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE)
-		glfwSetWindowShouldClose(window, GL_TRUE);
+    {
+        glfwSetWindowShouldClose(window, GL_TRUE);
+    }
+		
+    if (key == GLFW_KEY_1 && action == GLFW_RELEASE)
+    {
+        Rectangle::plusRed(figura);
+    }
 }
 
 

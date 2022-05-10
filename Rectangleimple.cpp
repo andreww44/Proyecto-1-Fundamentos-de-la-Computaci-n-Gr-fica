@@ -26,18 +26,20 @@ Rectangle::Rectangle(){
 
 }
 
-void Rectangle::plusRed(){
+void Rectangle::plusRed(Rectangle &_rect){
     
-    if(vertices[0].getColor()[0] >= 1.0f)
+
+    
+    if(_rect.getVertex(0).getColor()[0] >=1)
     {
         return;
     }
-    float red = vertices[0].getColor()[0] + 0.1f;
-    std::array<float,4> rgba = { red, 0.0f, 0.0f, 1.0f };
-    vertices[0].setCol(rgba);
-    vertices[1].setCol(rgba);
-    vertices[2].setCol(rgba);
-    vertices[3].setCol(rgba);
+    //float red = vertices[0].getColor()[0] + 0.1f;
+    //std::array<float,4> rgba = { red, 0.0f, 0.0f, 1.0f };
+    //vertices[0].setCol(rgba);
+    //vertices[1].setCol(rgba);
+    //vertices[2].setCol(rgba);
+    //vertices[3].setCol(rgba);
 }
 
 

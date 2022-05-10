@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include "Rectangle.h"
+#include "KeyController.h"
 #include <iostream>
 #include <cmath>
 
@@ -10,6 +11,7 @@
 class Screen
 {
         Rectangle figura;
+        KeyController controllador;
     public:
         const int SCR_WIDTH = 800;
         const int SCR_HEIGHT = 600;

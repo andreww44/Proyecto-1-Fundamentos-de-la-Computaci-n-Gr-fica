@@ -19,8 +19,8 @@ class Rectangle
         void setVertexCol(int ind, const std::array<float,4> _rgba){
             vertices[ind].setCol(_rgba);
         }
-
-        void plusRed();
+        
+        void plusRed(Rectangle &rect);
         //void minusRed(); 
 };
 #endif 
