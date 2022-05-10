@@ -20,7 +20,8 @@ class Rectangle
             vertices[ind].setCol(_rgba);
         }
         
-        void plusRed(Rectangle &rect);
+        void changeColor(int red, int green, int blue, int add);
+        void minusRed();
         //void minusRed(); 
 };
 #endif 

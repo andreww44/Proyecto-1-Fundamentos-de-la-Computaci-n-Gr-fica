@@ -9,8 +9,6 @@
 
 #define TITLE_PREFIX "Proyecto 1 Fundamentos de la Computació G"
 
-
-
 int main(int argc, char* argv[])
 {
     Screen pantalla = Screen();

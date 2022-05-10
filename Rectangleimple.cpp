@@ -26,20 +26,40 @@ Rectangle::Rectangle(){
 
 }
 
-void Rectangle::plusRed(Rectangle &_rect){
+void Rectangle::changeColor(int red, int green, int blue, int add){
     
+    float redcolor = vertices[0].getColor()[0];
+    float greencolor = vertices[0].getColor()[1];
+    float bluecolor = vertices[0].getColor()[2];
+    //float alpha = vertices[0].getColor()[3];
 
-    
-    if(_rect.getVertex(0).getColor()[0] >=1)
+    if(red == 1)
     {
-        return;
+        if(vertices[0].getColor()[0] >= 1.0f || vertices[0].getColor()[0] < 0.0f)
+        { return; }
+        if(add == 1){redcolor += 0.1f;}
+        else{redcolor -= 0.1f;}
     }
-    //float red = vertices[0].getColor()[0] + 0.1f;
-    //std::array<float,4> rgba = { red, 0.0f, 0.0f, 1.0f };
-    //vertices[0].setCol(rgba);
-    //vertices[1].setCol(rgba);
-    //vertices[2].setCol(rgba);
-    //vertices[3].setCol(rgba);
+    if(green == 1)
+    {
+        if(vertices[0].getColor()[1] >= 1.0f || vertices[0].getColor()[1] < 0.0f)
+        { return; }
+        if(add == 1){greencolor += 0.1f;}
+        else{greencolor -= 0.1f;}
+    }
+    if(blue == 1)
+    {
+        if(vertices[0].getColor()[2] >= 1.0f || vertices[0].getColor()[2] < 0.0f)
+        { return; }
+        if(add == 1){bluecolor += 0.1f;}
+        else{bluecolor -= 0.1f;}
+    }
+
+    std::array<float,4> rgba = { redcolor, greencolor, bluecolor, 1.0f };
+    vertices[0].setCol(rgba);
+    vertices[1].setCol(rgba);
+    vertices[2].setCol(rgba);
+    vertices[3].setCol(rgba);
 }
 
 

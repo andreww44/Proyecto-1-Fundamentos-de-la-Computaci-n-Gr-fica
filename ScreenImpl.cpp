@@ -119,10 +119,43 @@ void Screen::InitializeScreen()
 
 void Screen::Loop()
 {
+    bool pr1 = false;
+    bool pr2 = false;
+    bool pr3 = false;
+    bool pr4 = false;
+    bool pr5 = false;
+    bool pr6 = false;
+    //bool pr1 = false;
     while (!glfwWindowShouldClose(window))
     {
         // input
         // -----
+        int bt1 = glfwGetKey (window, GLFW_KEY_1);
+        int bt2 = glfwGetKey (window, GLFW_KEY_2);
+        int bt3 = glfwGetKey (window, GLFW_KEY_3);
+        int bt4 = glfwGetKey (window, GLFW_KEY_4);
+        int bt5 = glfwGetKey (window, GLFW_KEY_5);
+        int bt6 = glfwGetKey (window, GLFW_KEY_6);
+        //int bta = glfwGetKey (window, GLFW_KEY_1);
+
+        if(bt1 == GLFW_PRESS && pr1 != true){figura.changeColor(1,0,0,1);pr1 = true;}
+        if(bt1 == GLFW_RELEASE && pr1 == true){ pr1 = false;}
+
+        if(bt2 == GLFW_PRESS && pr2 != true){figura.changeColor(0,1,0,1);pr2 = true;}
+        if(bt2 == GLFW_RELEASE && pr2 == true){ pr2 = false;}
+
+        if(bt3 == GLFW_PRESS && pr3 != true){figura.changeColor(0,0,1,1);pr3 = true;}
+        if(bt3 == GLFW_RELEASE && pr3 == true){ pr3 = false;}
+
+        if(bt4 == GLFW_PRESS && pr4 != true){figura.changeColor(1,0,0,0);pr4 = true;}
+        if(bt4 == GLFW_RELEASE && pr4 == true){ pr4 = false;}
+
+        if(bt5 == GLFW_PRESS && pr5 != true){figura.changeColor(0,1,0,0);pr5 = true;}
+        if(bt5 == GLFW_RELEASE && pr5 == true){ pr5 = false;}
+
+        if(bt6 == GLFW_PRESS && pr6 != true){figura.changeColor(0,0,1,0);pr6 = true;}
+        if(bt6 == GLFW_RELEASE && pr6 == true){ pr6 = false;}
+
     	glfwSetKeyCallback(window, eventosTeclado);
 
         // render
@@ -206,7 +239,7 @@ void Screen::eventosTeclado(GLFWwindow* window, int key, int scancode, int actio
 		
     if (key == GLFW_KEY_1 && action == GLFW_RELEASE)
     {
-        Rectangle::plusRed(figura);
+        //figura.plusRed();
     }
 }
 
