@@ -13,7 +13,7 @@ class Screen
         Rectangle figura;
         KeyController controllador;
     public:
-        const int SCR_WIDTH = 800;
+        const int SCR_WIDTH = 600;
         const int SCR_HEIGHT = 600;
         const char *vertexShaderSource ="#version 330 core\n"
             "layout (location = 0) in vec3 aPos;\n"
@@ -21,7 +21,6 @@ class Screen
             "{\n"
             "   gl_Position = vec4(aPos, 1.0);\n"
             "}\0";
-
         const char *fragmentShaderSource = "#version 330 core\n"
             "out vec4 FragColor;\n"
             "uniform vec4 ourColor;\n"

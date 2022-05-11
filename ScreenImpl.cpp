@@ -79,12 +79,6 @@ void Screen::InitializeScreen()
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
-    /*
-    float vertices[] = {
-         0.5f, -0.5f, 0.0f,  // bottom right
-        -0.5f, -0.5f, 0.0f,  // bottom left
-         0.0f,  0.5f, 0.0f   // top 
-    };*/
     float vertices[] = {
         figura.getVertex(0).getPos()[0], figura.getVertex(0).getPos()[1], figura.getVertex(0).getPos()[2],  // bottom right
         figura.getVertex(1).getPos()[0], figura.getVertex(1).getPos()[1], figura.getVertex(1).getPos()[2],  // bottom left
@@ -94,27 +88,15 @@ void Screen::InitializeScreen()
         figura.getVertex(2).getPos()[0], figura.getVertex(2).getPos()[1], figura.getVertex(2).getPos()[2]
     };
 
-    //unsigned int VBO, VAO;
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
-    // bind the Vertex Array Object first, then bind and set vertex buffer(s), and then configure vertex attributes(s).
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-
-    // You can unbind the VAO afterwards so other VAO calls won't accidentally modify this VAO, but this rarely happens. Modifying other
-    // VAOs requires a call to glBindVertexArray anyways so we generally don't unbind VAOs (nor VBOs) when it's not directly necessary.
-    // glBindVertexArray(0);
-
-
-    // bind the VAO (it was already bound, but just to demonstrate): seeing as we only have a single VAO we can 
-    // just bind it beforehand before rendering the respective triangle; this is another approach.
-    
-
+    glEnableVertexAttribArray(0);    
 }
 
 void Screen::Loop()
@@ -125,36 +107,36 @@ void Screen::Loop()
     bool pr4 = false;
     bool pr5 = false;
     bool pr6 = false;
+    bool pr7 = false;
+    bool pr8 = false;
     //bool pr1 = false;
     while (!glfwWindowShouldClose(window))
     {
         // input
         // -----
-        int bt1 = glfwGetKey (window, GLFW_KEY_1);
-        int bt2 = glfwGetKey (window, GLFW_KEY_2);
-        int bt3 = glfwGetKey (window, GLFW_KEY_3);
-        int bt4 = glfwGetKey (window, GLFW_KEY_4);
-        int bt5 = glfwGetKey (window, GLFW_KEY_5);
-        int bt6 = glfwGetKey (window, GLFW_KEY_6);
-        //int bta = glfwGetKey (window, GLFW_KEY_1);
+        if(glfwGetKey (window, GLFW_KEY_1) == GLFW_PRESS && pr1 != true){figura.changeColor(1,0,0,1);pr1 = true;}
+        if(glfwGetKey (window, GLFW_KEY_1) == GLFW_RELEASE && pr1 == true){ pr1 = false;}
 
-        if(bt1 == GLFW_PRESS && pr1 != true){figura.changeColor(1,0,0,1);pr1 = true;}
-        if(bt1 == GLFW_RELEASE && pr1 == true){ pr1 = false;}
+        if(glfwGetKey (window, GLFW_KEY_2) == GLFW_PRESS && pr2 != true){figura.changeColor(0,1,0,1);pr2 = true;}
+        if(glfwGetKey (window, GLFW_KEY_2) == GLFW_RELEASE && pr2 == true){ pr2 = false;}
 
-        if(bt2 == GLFW_PRESS && pr2 != true){figura.changeColor(0,1,0,1);pr2 = true;}
-        if(bt2 == GLFW_RELEASE && pr2 == true){ pr2 = false;}
+        if(glfwGetKey (window, GLFW_KEY_3) == GLFW_PRESS && pr3 != true){figura.changeColor(0,0,1,1);pr3 = true;}
+        if(glfwGetKey (window, GLFW_KEY_3) == GLFW_RELEASE && pr3 == true){ pr3 = false;}
 
-        if(bt3 == GLFW_PRESS && pr3 != true){figura.changeColor(0,0,1,1);pr3 = true;}
-        if(bt3 == GLFW_RELEASE && pr3 == true){ pr3 = false;}
+        if(glfwGetKey (window, GLFW_KEY_4) == GLFW_PRESS && pr4 != true){figura.changeColor(1,0,0,0);pr4 = true;}
+        if(glfwGetKey (window, GLFW_KEY_4) == GLFW_RELEASE && pr4 == true){ pr4 = false;}
 
-        if(bt4 == GLFW_PRESS && pr4 != true){figura.changeColor(1,0,0,0);pr4 = true;}
-        if(bt4 == GLFW_RELEASE && pr4 == true){ pr4 = false;}
+        if(glfwGetKey (window, GLFW_KEY_5) == GLFW_PRESS && pr5 != true){figura.changeColor(0,1,0,0);pr5 = true;}
+        if(glfwGetKey (window, GLFW_KEY_5) == GLFW_RELEASE && pr5 == true){ pr5 = false;}
 
-        if(bt5 == GLFW_PRESS && pr5 != true){figura.changeColor(0,1,0,0);pr5 = true;}
-        if(bt5 == GLFW_RELEASE && pr5 == true){ pr5 = false;}
+        if(glfwGetKey (window, GLFW_KEY_6) == GLFW_PRESS && pr6 != true){figura.changeColor(0,0,1,0);pr6 = true;}
+        if(glfwGetKey (window, GLFW_KEY_6) == GLFW_RELEASE && pr6 == true){ pr6 = false;}
 
-        if(bt6 == GLFW_PRESS && pr6 != true){figura.changeColor(0,0,1,0);pr6 = true;}
-        if(bt6 == GLFW_RELEASE && pr6 == true){ pr6 = false;}
+        if(glfwGetKey (window, GLFW_KEY_7) == GLFW_PRESS && pr7 != true){figura.changeSize(1);pr7 = true;}
+        if(glfwGetKey (window, GLFW_KEY_7) == GLFW_RELEASE && pr7 == true){ pr7 = false;}
+
+        if(glfwGetKey (window, GLFW_KEY_8) == GLFW_PRESS && pr8 != true){figura.changeSize(0);pr8 = true;}
+        if(glfwGetKey (window, GLFW_KEY_8) == GLFW_RELEASE && pr8 == true){ pr8 = false;}
 
     	glfwSetKeyCallback(window, eventosTeclado);
 
@@ -167,12 +149,10 @@ void Screen::Loop()
         glUseProgram(shaderProgram);
 
         // update shader uniform
-        
-        double  timeValue = glfwGetTime();
-        //float greenValue = static_cast<float>(sin(timeValue) / 2.0 + 0.5);
         int vertexColorLocation = glGetUniformLocation(shaderProgram, "ourColor");
-        glUniform4f(vertexColorLocation, figura.getVertex(0).getColor()[0], figura.getVertex(0).getColor()[1], figura.getVertex(0).getColor()[2], figura.getVertex(0).getColor()[3]);
         
+        glUniform4f(vertexColorLocation, figura.getVertex(0).getColor()[0], figura.getVertex(0).getColor()[1], figura.getVertex(0).getColor()[2], figura.getVertex(0).getColor()[3]);
+
         // render the triangle
         glDrawArrays(GL_TRIANGLES, 0, 6);
 

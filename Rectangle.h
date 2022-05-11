@@ -21,7 +21,7 @@ class Rectangle
         }
         
         void changeColor(int red, int green, int blue, int add);
-        void minusRed();
+        void changeSize(int add);
         //void minusRed(); 
 };
 #endif 
